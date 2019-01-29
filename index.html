@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Register for Full Stack Conf</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">	
 </head>
 <body>
 	<div class="container">
@@ -34,8 +35,10 @@
           <option value="designer">Designer</option>          
           <option value="student">Student</option>
           <option value="other">Other</option>  
-        </select>           
-      </fieldset>
+        </select>  
+
+        <input type="text" id="other-title" name="other_title" placeholder="Your Job Role">        
+      </fieldset>      
       
       <fieldset class="shirt">
         <legend>T-Shirt Info</legend>
@@ -149,7 +152,18 @@
       <button type="submit">Register</button>
       
     </form>
-
+    <!-- Load jQuery through cdn -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
+    <!-- If jQuery is missing, load from local server -->
+    <script type="text/javascript">
+      if (typeof jQuery == 'undefined') {
+          document.write(unescape("%3Cscript src='js/jquery-3.3.1.min.js' type='text/javascript'%3E%3C/script%3E"));
+      }
+    </script>
+    <script src="js/script.js"></script>
 	</div>
 </body>
 </html>
