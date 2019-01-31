@@ -9,9 +9,9 @@ $( document ).ready( () => {
     // show job role input if 'other' is selected on the Job Role menu
     $( "#title" ).change( event => {
         if ( event.target.value === "other" ) {
-            $( "#other-title" ).show();
+            $( "#other-title" ).slideDown();
         } else {
-            $( "#other-title" ).hide();
+            $( "#other-title" ).slideUp();
         }
     });
     // display correct t-shirt color options
@@ -46,13 +46,20 @@ $( document ).ready( () => {
             } 
         });
         if ( $( "span.total-cost" ).length ) {
-            $( "span.total-cost" ).html( `Total Cost: $${ totalCost }` );
+            $( "span.total-cost" ).html( `Total Cost: $${ totalCost }` ).hide();
+            $( "span.total-cost" ).slideDown();
         } else {
             $( ".activities" ).after( `<span class="total-cost">Total Cost: $${ totalCost } </span>` );
+            $( "span.total-cost" ).hide().slideDown();
         }
 
-        if ( totalCost === 0 ) {
-            $( "span.total-cost" ).remove();
-        }
+        // if ( totalCost === 0 ) {
+        //     $( "span.total-cost" ).slideUp();
+        // }
+    });
+    // disable courses which have confilicting timetables
+    $( ".activities input" ).change( event => {
+        const eventTime = event.target.getAttribute("date");
+        // $( ".activities input" ).each();
     });
 }); 
