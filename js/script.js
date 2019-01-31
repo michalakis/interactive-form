@@ -60,6 +60,11 @@ $( document ).ready( () => {
     // disable courses which have confilicting timetables
     $( ".activities input" ).change( event => {
         const eventTime = event.target.getAttribute("date");
-        // $( ".activities input" ).each();
+            $( ".activities input" ).each( ( index, option ) => {
+                if ( option.getAttribute("date") === eventTime ) {
+                    option.disabled = !option.disabled;
+                }
+            });
+            event.target.disabled = false;
     });
 }); 
