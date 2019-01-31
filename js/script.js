@@ -1,3 +1,5 @@
+// global variables
+    let totalCost = 0;
 // what to do when page is ready
 $( document ).ready( () => {
     // focus on the fist form field
@@ -10,6 +12,47 @@ $( document ).ready( () => {
             $( "#other-title" ).show();
         } else {
             $( "#other-title" ).hide();
+        }
+    });
+    // display correct t-shirt color options
+    $( "#design" ).change ( event => {
+        if ( event.target.value !== "Select Theme" ) {
+            $( "#color option" ).each( ( index, option ) => {
+                const optionText = option.textContent;
+                let designText = event.target[event.target.selectedIndex].textContent;
+                designText = designText.replace(/Theme - /, "");
+                if ( optionText.includes( designText ) ) {
+                    $( option ).show();
+                } else {
+                    $( option ).hide();
+                }
+            });
+        } else {
+            $( "#color option" ).each( ( index, option ) => {
+                $( option ).show();
+            });
+        }
+    });
+    // provide a sum of the cost of selected courses 
+    $( ".activities input" ).change( event => {
+        totalCost = 0;
+        $( ".activities input" ).each( ( index, option ) => {
+            if ( $( option ).is(":checked") ) {
+                if ( $( option ).attr("name") === "all" ) {
+                    totalCost += 200;
+                } else {
+                    totalCost += 100;
+                }
+            } 
+        });
+        if ( $( "span.total-cost" ).length ) {
+            $( "span.total-cost" ).html( `Total Cost: $${ totalCost }` );
+        } else {
+            $( ".activities" ).after( `<span class="total-cost">Total Cost: $${ totalCost } </span>` );
+        }
+
+        if ( totalCost === 0 ) {
+            $( "span.total-cost" ).remove();
         }
     });
 }); 

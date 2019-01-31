@@ -184,3 +184,9 @@ button:hover {
   Additional Styles
 ==================================== */
 
+.total-cost {
+	color: #184f68;
+	font-weight: 500;
+	display: block;
+	text-align: center;
+}
