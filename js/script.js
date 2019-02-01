@@ -50,10 +50,11 @@ $( document ).ready( () => {
             } 
         });
         if ( $( "span.total-cost" ).length ) {
-            $( "span.total-cost" ).html( `Total Cost: $${ totalCost }` ).hide();
-            $( "span.total-cost" ).slideDown();
+            $( "span.inner-total-cost" ).slideUp();
+            $( "span.total-cost span" ).slideDown();
+            $( "span.inner-total-cost" ).html( totalCost );
         } else {
-            $( ".activities" ).after( `<span class="total-cost">Total Cost: $${ totalCost } </span>` );
+            $( ".activities" ).after( `<span class="total-cost">Total Cost: $<span class="inner-total-cost">${ totalCost }</span> </span>` );
             $( "span.total-cost" ).hide().slideDown();
         }
     });
