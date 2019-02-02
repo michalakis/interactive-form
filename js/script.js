@@ -21,6 +21,7 @@ $( document ).ready( () => {
     $( "#design" ).change( event => {
         if ( event.target.value !== "Select Theme" ) {
             $( "#color option" ).each( ( index, option ) => {
+                $( option ).attr('selected', false);
                 const optionText = option.textContent;
                 let designText = event.target[event.target.selectedIndex].textContent;
                 designText = designText.replace(/Theme - /, "");
@@ -28,6 +29,12 @@ $( document ).ready( () => {
                     $( option ).show();
                 } else {
                     $( option ).hide();
+                }
+            });
+            $( "#color option" ).each( ( index, option ) => {
+                if ( option.style.display !== 'none' ) {
+                    $( option ).attr('selected', true);
+                    return false;
                 }
             });
         } else {
