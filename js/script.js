@@ -18,6 +18,7 @@ $( document ).ready( () => {
     });
 
     // display correct t-shirt color options
+    $( "#design option[value='select theme']").attr('disabled', true);
     $( "#design" ).change( event => {
         if ( event.target.value !== "Select Theme" ) {
             $( "#color option" ).each( ( index, option ) => {
@@ -77,4 +78,30 @@ $( document ).ready( () => {
             });
             event.target.disabled = false;
     });
+
+    // disable the "Select Payment Method Option"
+    $( "#payment option[value='select_method']" ).attr('disabled', true);
+
+    // set credit card as default payment option, display the correct information based on the selected payment method
+    $( "#payment option[value='credit-card']" ).attr('selected', true);
+    $( "#payment-info .paypal" ).css('display', "none");
+    $( "#payment-info .bitcoin" ).css('display', "none");
+    $( "#payment" ).change( event => {
+        const paymentValue = event.target.value;
+        $( "#payment option" ).each( (index, option) =>{
+            if ( paymentValue === option.value ) {
+                $( option ).attr('selected', true);
+            } else {
+                $( option ).attr('selected', false);
+            }
+        });
+        $( "#payment-info").children('div').each( (index, option) => {
+            const paymentDivClass = $( option ).attr('class');
+            if ( paymentValue === paymentDivClass ) {
+                $( option ).slideDown();
+            } else {
+                $( option ).slideUp();
+            }
+        });
+    });    
 }); 
