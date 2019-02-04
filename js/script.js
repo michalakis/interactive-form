@@ -106,10 +106,10 @@ $( document ).ready( () => {
     // form input validation
 
         // select form elements
-        const usernameInput = document.querySelector( "#name" );
+        const nameInput = document.querySelector( "#name" );
 
-        // username validator, username can only contain letters a-z, with the first letter capitalized, a minimum of two letters, and a maximum of 15 
-        const isUsernameValid = username => /^[a-z]+$/.test(username);
+        // name validator, name can only contain letters a-z, with the first letter capitalized, a minimum of two letters, and a maximum of 15 
+        const isNameValid = name => /^[A-Z][a-z]{1,14}$/.test(name);
         
         // function to show or hide tooltip
         function toggleTooltip(show, element) {
@@ -135,5 +135,5 @@ $( document ).ready( () => {
           
 
         // event listeners for each form element requiring validation
-        usernameInput.addEventListener("input", createListener(isUsernameValid));
+        nameInput.addEventListener("input", createListener(isNameValid));
 }); 
