@@ -1,5 +1,3 @@
-// global variables
-    let totalCost = 0;
 // what to do when page is ready
 $( document ).ready( () => {
     // focus on the fist form field
@@ -47,7 +45,7 @@ $( document ).ready( () => {
 
     // provide a sum of the cost of selected courses 
     $( ".activities input" ).change( event => {
-        totalCost = 0;
+        let totalCost = 0;
         $( ".activities input" ).each( ( index, option ) => {
             if ( $( option ).is(":checked") ) {
                 if ( $( option ).attr("name") === "all" ) {
@@ -103,5 +101,39 @@ $( document ).ready( () => {
                 $( option ).slideUp();
             }
         });
-    });    
+    });  
+    
+    // form input validation
+
+        // select form elements
+        const usernameInput = document.querySelector( "#name" );
+
+        // username validator, username can only contain letters a-z, with the first letter capitalized, a minimum of two letters, and a maximum of 15 
+        const isUsernameValid = username => /^[a-z]+$/.test(username);
+        
+        // function to show or hide tooltip
+        function toggleTooltip(show, element) {
+            if (show) {
+              element.style.display = "inherit";
+            } else {
+              element.style.display = "none";
+            }
+            console.log('toggletooltip called');
+        }
+          
+        // function that creates a function for the event listeners 
+        function createListener(validator) {
+            return event => {
+                const text = event.target.value;
+                const valid = validator(text);
+                const showTip = text !== "" && !valid;
+                const tooltip = event.target.nextElementSibling;
+                toggleTooltip(showTip, tooltip);
+                console.log('listener created');
+            };
+        }
+          
+
+        // event listeners for each form element requiring validation
+        usernameInput.addEventListener("input", createListener(isUsernameValid));
 }); 
