@@ -105,37 +105,37 @@ $( document ).ready( () => {
         });
     });  
     
-    // form input validation
+    // form validation
 
-        // select form elements
-        const nameInput = document.querySelector( "#name" );
+        // variables
+        const nameInput = document.querySelector("#name");
+        const emailInput = document.querySelector("#mail");
 
-        // name validator, name can only contain letters a-z, with the first letter capitalized, a minimum of two letters, and a maximum of 15 
-        const isNameValid = name => /^[A-Z][a-z]{1,14}$/.test(name);
-        
-        // function to show or hide tooltip
-        function toggleTooltip(show, element) {
-            if (show) {
-              element.style.display = "inherit";
-            } else {
-              element.style.display = "none";
-            }
-            console.log('toggletooltip called');
-        }
-          
-        // function that creates a function for the event listeners 
-        function createListener(validator) {
+        // input field validator functions
+        const nameValidator = name => /^[A-Z][a-z]{1,14}$/.test(name);
+        const emailValidator = email => /^[a-zA-z0-9]@[a-zA-z0-9].[a-z]$/.test(email);
+
+        // function that creates an event listener
+        const createListener = validator => {
             return event => {
-                const text = event.target.value;
-                const valid = validator(text);
-                const showTip = text !== "" && !valid;
                 const tooltip = event.target.nextElementSibling;
-                toggleTooltip(showTip, tooltip);
-                console.log('listener created');
-            };
-        }
-          
+                const inputValue = event.target.value;
+                const isValid = validator(inputValue);
+                const showTooltipBoolean = inputValue !== "" && !isValid;
+                showTooltip(showTooltipBoolean, tooltip);
+            }
+        };
 
-        // event listeners for each form element requiring validation
-        nameInput.addEventListener("input", createListener(isNameValid));
+        // tooltip function that dispalys or hides the tooltip
+        const showTooltip = (showTooltipBoolean, tooltip) => {
+            if (showTooltipBoolean) {
+                tooltip.style.display = "inherit";
+            } else {
+                tooltip.style.display = "none";
+            }
+        };
+
+        // event listeners
+        nameInput.addEventListener("input", createListener(nameValidator));
+
 }); 
