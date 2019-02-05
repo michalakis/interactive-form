@@ -195,7 +195,7 @@ p {
 	position: relative;
 }
 
-span {
+span.tooltip {
 	border-radius: 5px;
 	display: none;
 	font-family: sans-serif;
@@ -210,7 +210,7 @@ span {
 	color: #fff;
 }
 
-span:after {
+span.tooltip:after {
 	right: 100%;
 	top: 50%;
 	border: 8px solid transparent;

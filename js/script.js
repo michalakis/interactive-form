@@ -1,5 +1,6 @@
 // what to do when page is ready
 $( document ).ready( () => {
+    
     // focus on the fist form field
     $( "#name" ).focus();    
 
@@ -44,8 +45,9 @@ $( document ).ready( () => {
     });
 
     // provide a sum of the cost of selected courses 
+    let totalCost = 0;
     $( ".activities input" ).change( event => {
-        let totalCost = 0;
+        totalCost = 0;
         $( ".activities input" ).each( ( index, option ) => {
             if ( $( option ).is(":checked") ) {
                 if ( $( option ).attr("name") === "all" ) {
@@ -61,7 +63,7 @@ $( document ).ready( () => {
                 $( "span.total-cost span" ).slideDown();
             });
         } else {
-            $( ".activities" ).after( `<span class="total-cost">Total Cost: $<span class="inner-total-cost">${ totalCost }</span> </span>` );
+            $( ".activities" ).after(`<span class="total-cost">Total Cost: $<span class="inner-total-cost">${ totalCost }</span> </span>`);
             $( "span.total-cost" ).hide().slideDown();
         }
     });
