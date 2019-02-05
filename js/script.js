@@ -113,7 +113,7 @@ $( document ).ready( () => {
 
         // input field validator functions
         const nameValidator = name => /^[A-Z][a-z]{1,14}$/.test(name);
-        const emailValidator = email => /^[a-zA-z0-9]@[a-zA-z0-9].[a-z]$/.test(email);
+        const emailValidator = email => /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
 
         // function that creates an event listener
         const createListener = validator => {
@@ -123,6 +123,8 @@ $( document ).ready( () => {
                 const isValid = validator(inputValue);
                 const showTooltipBoolean = inputValue !== "" && !isValid;
                 showTooltip(showTooltipBoolean, tooltip);
+                console.log(isValid);
+                console.log(inputValue);
             }
         };
 
@@ -137,5 +139,6 @@ $( document ).ready( () => {
 
         // event listeners
         nameInput.addEventListener("input", createListener(nameValidator));
+        emailInput.addEventListener("input", createListener(emailValidator));
 
 }); 
