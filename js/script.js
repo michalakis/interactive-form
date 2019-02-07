@@ -155,10 +155,9 @@ $( document ).ready( () => {
         cvvInput.addEventListener("input", createListener(creditCardValidator));
 
         // activities validator
-        const tooltip = document.querySelector(".activities-tooltip");
         let isChecked = false;
-        showTooltip( !isChecked, tooltip);
         $( ".activities input" ).on("load change", event => {
+            const tooltip = document.querySelector(".activities-tooltip");
             isChecked = false;
             $( ".activities input" ).each( (index, checkbox) => {
                 if ( $(checkbox).is(":checked") ) {
