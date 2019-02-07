@@ -161,19 +161,28 @@ $( document ).ready( () => {
         zipCodeInput.addEventListener("input", createListener(creditCardValidator));
         cvvInput.addEventListener("input", createListener(creditCardValidator));
 
-        // activities validator
+        // function that returns true if a checkbox is selected
         let isChecked = false;
-        $( ".activities input" ).on("load change", event => {
-            const tooltip = document.querySelector(".activities-tooltip");
+        const isActivityChecked = () => {
             isChecked = false;
             $( ".activities input" ).each( (index, checkbox) => {
                 if ( $(checkbox).is(":checked") ) {
                     isChecked = true;
                 }
             });
-            showTooltip( !isChecked, tooltip);
+            return isChecked;
+        };
+
+        // activities validator
+        $( ".activities input" ).on("change", event => {
+            const tooltip = document.querySelector(".activities-tooltip");
+            showTooltip( !isActivityChecked(), tooltip);
         });
 
         // stop form from submitting if there are invalid fields 
-        console.log($( "button[type='submit']" ));
+        $( "button[type='submit']" ).on("click", event => {
+            if( nameValidator === false || emailValidator === false || isActivityChecked() === false ) {
+                event.preventDefault(); 
+            }
+        });
 }); 
