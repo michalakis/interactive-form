@@ -120,7 +120,7 @@
           <div class="col-6 col">
             <label for="cc-num">Card Number:</label>  
               <input id="cc-num" name="user_cc-num" type="text">
-              <span class="tooltip creditCard-tooltip">
+              <span class="tooltip credit-card-tooltip">
                 You must provide a valid credit card number
               </span>
           </div>
@@ -128,11 +128,17 @@
           <div class="col-3 col">
             <label for="zip">Zip Code:</label>
             <input id="zip" name="user_zip" type="text"> 
+            <span class="tooltip zip-code-tooltip">
+              You must provide a valid zip code
+            </span>
           </div>
 
           <div class="col-3 col">
             <label for="cvv">CVV:</label>
             <input id="cvv" name="user_cvv" type="text"> 
+            <span class="tooltip cvv-tooltip">
+              You must provide a valid cvv number
+            </span>
           </div>
           
           <label for="exp-month">Expiration Date:</label>
@@ -159,7 +165,6 @@
             <option value="2020">2020</option>        		          
           </select> 	                  	         
           </div>
-        </p>
         
         <div class="paypal">
         	<p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>

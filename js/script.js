@@ -114,11 +114,15 @@ $( document ).ready( () => {
         const nameInput = document.querySelector("#name");
         const emailInput = document.querySelector("#mail");
         const creditCardInput = document.querySelector("#cc-num");
+        const zipCodeInput = document.querySelector("#zip");
+        const cvvInput = document.querySelector("#cvv");
 
         // input field validator functions
         const nameValidator = name => /^[A-Z][a-z]{1,14}$/.test(name);
         const emailValidator = email => /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
         const creditCardValidator = creditCardNumber => /^\d{16}$/.test(creditCardNumber);
+        const zipCodeValidator = zipCodeNumber => /^\d{5}$/.test(zipCodeNumber);
+        const cvvValidator = cvvdNumber => /^\d{3}$/.test(cvvNumber);
 
         // function that creates an event listener
         const createListener = validator => {
@@ -147,6 +151,8 @@ $( document ).ready( () => {
         nameInput.addEventListener("input", createListener(nameValidator));
         emailInput.addEventListener("input", createListener(emailValidator));
         creditCardInput.addEventListener("input", createListener(creditCardValidator));
+        zipCodeInput.addEventListener("input", createListener(creditCardValidator));
+        cvvInput.addEventListener("input", createListener(creditCardValidator));
 
         // activities validator
         const tooltip = document.querySelector(".activities-tooltip");

@@ -230,6 +230,9 @@ span.tooltip:after {
 	top: -20px;
 }
 
-.email-tooltip {
+.email-tooltip, .credit-card-tooltip, .zip-code-tooltip, .cvv-tooltip {
 	top: 30px;
+}
+.credit-card {
+	position: relative;
 }
