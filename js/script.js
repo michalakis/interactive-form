@@ -50,12 +50,15 @@ $( document ).ready( () => {
         totalCost = 0;
         $( ".activities input" ).each( ( index, option ) => {
             if ( $( option ).is(":checked") ) {
+                $( option ).attr("checked", true)
                 if ( $( option ).attr("name") === "all" ) {
                     totalCost += 200;
                 } else {
                     totalCost += 100;
                 }
-            } 
+            } else {
+                $( option ).attr("checked", false)
+            }
         });
         if ( $( "span.total-cost" ).length ) {
             $( "span.inner-total-cost" ).slideUp( function() {
@@ -110,10 +113,12 @@ $( document ).ready( () => {
         // variables
         const nameInput = document.querySelector("#name");
         const emailInput = document.querySelector("#mail");
+        const creditCardInput = document.querySelector("#cc-num");
 
         // input field validator functions
         const nameValidator = name => /^[A-Z][a-z]{1,14}$/.test(name);
         const emailValidator = email => /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
+        const creditCardValidator = creditCardNumber => /^\d{16}$/.test(creditCardNumber);
 
         // function that creates an event listener
         const createListener = validator => {
@@ -125,6 +130,7 @@ $( document ).ready( () => {
                 showTooltip(showTooltipBoolean, tooltip);
                 console.log(isValid);
                 console.log(inputValue);
+                console.log(tooltip);
             }
         };
 
@@ -140,5 +146,20 @@ $( document ).ready( () => {
         // event listeners
         nameInput.addEventListener("input", createListener(nameValidator));
         emailInput.addEventListener("input", createListener(emailValidator));
+        creditCardInput.addEventListener("input", createListener(creditCardValidator));
+
+        // activities validator
+        const tooltip = document.querySelector(".activities-tooltip");
+        let isChecked = false;
+        showTooltip( !isChecked, tooltip);
+        $( ".activities input" ).on("load change", event => {
+            isChecked = false;
+            $( ".activities input" ).each( (index, checkbox) => {
+                if ( $(checkbox).is(":checked") ) {
+                    isChecked = true;
+                }
+            });
+            showTooltip( !isChecked, tooltip);
+        });
 
 }); 

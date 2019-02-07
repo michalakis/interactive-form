@@ -204,7 +204,6 @@ span.tooltip {
 	position: absolute;
 	background: #2F558E;
 	left: 105%;
-	top: -20px;
 	width: 160px;
 	padding: 7px 10px;
 	color: #fff;
@@ -221,4 +220,16 @@ span.tooltip:after {
 	pointer-events: none;
 	border-right-color: #2F558E;
 	margin-top: -8px;
+}
+
+.activities-tooltip {
+	top: 50px;
+}
+
+.name-tooltip {
+	top: -20px;
+}
+
+.email-tooltip {
+	top: 30px;
 }

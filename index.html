@@ -24,7 +24,7 @@
         <p>
           <label for="name">Name:</label>
           <input type="text" id="name" name="user_name">
-          <span class="tooltip">
+          <span class="tooltip name-tooltip">
             Can only contain letters a-z <br><br>
             The first letter must be capitalized, and the rest must be lowercase <br><br>
             The Name must be a minimum of two letters, and a maximum of 15 
@@ -34,7 +34,7 @@
         <p>
           <label for="mail">Email:</label>
           <input type="email" id="mail" name="user_email">
-          <span class="tooltip">
+          <span class="tooltip email-tooltip">
             Please provide a valid e-mail address
           </span>
         </p>
@@ -88,17 +88,21 @@
         </div>                
       </fieldset>
 
-      <fieldset class="activities">
-        <legend>Register for Activities</legend>
-        <label><input type="checkbox" name="all"> Main Conference — $200</label>
-        <label><input type="checkbox" name="js-frameworks" date="Tuesday 9am-12pm"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="js-libs" date="Tuesday 1pm-4pm"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
-        <label><input type="checkbox" name="express" date="Tuesday 9am-12pm"> Express Workshop — Tuesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="node" date="Tuesday 1pm-4pm"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
-        <label><input type="checkbox" name="build-tools" date="Wednesday 9am-12pm"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
-        <label><input type="checkbox" name="npm" date="Wednesday 1pm-4pm"> npm Workshop — Wednesday 1pm-4pm, $100</label>
-                  	
-      </fieldset>
+      <p>
+        <span class="tooltip activities-tooltip">
+          You must select at least one activity
+        </span>
+        <fieldset class="activities">
+          <legend>Register for Activities</legend>
+          <label><input type="checkbox" name="all"> Main Conference — $200</label>
+          <label><input type="checkbox" name="js-frameworks" date="Tuesday 9am-12pm"> JavaScript Frameworks Workshop — Tuesday 9am-12pm, $100</label>
+          <label><input type="checkbox" name="js-libs" date="Tuesday 1pm-4pm"> JavaScript Libraries Workshop — Tuesday 1pm-4pm, $100</label>
+          <label><input type="checkbox" name="express" date="Tuesday 9am-12pm"> Express Workshop — Tuesday 9am-12pm, $100</label>
+          <label><input type="checkbox" name="node" date="Tuesday 1pm-4pm"> Node.js Workshop — Tuesday 1pm-4pm, $100</label>          
+          <label><input type="checkbox" name="build-tools" date="Wednesday 9am-12pm"> Build tools Workshop — Wednesday 9am-12pm, $100</label>
+          <label><input type="checkbox" name="npm" date="Wednesday 1pm-4pm"> npm Workshop — Wednesday 1pm-4pm, $100</label>      	
+        </fieldset>
+      </p>
       
       <fieldset id="payment-info">
         <legend>Payment Info</legend>
@@ -111,11 +115,14 @@
           <option value="bitcoin">Bitcoin</option>
         </select>
 
-        <div id="credit-card" class="credit-card">
+          <div id="credit-card" class="credit-card">
 
           <div class="col-6 col">
-            <label for="cc-num">Card Number:</label>
-        	  <input id="cc-num" name="user_cc-num" type="text">
+            <label for="cc-num">Card Number:</label>  
+              <input id="cc-num" name="user_cc-num" type="text">
+              <span class="tooltip creditCard-tooltip">
+                You must provide a valid credit card number
+              </span>
           </div>
 
           <div class="col-3 col">
@@ -127,7 +134,7 @@
             <label for="cvv">CVV:</label>
             <input id="cvv" name="user_cvv" type="text"> 
           </div>
-
+          
           <label for="exp-month">Expiration Date:</label>
           <select id="exp-month" name="user_exp-month">
             <option value="1">1 - January</option>
@@ -151,8 +158,9 @@
             <option value="2019">2019</option>
             <option value="2020">2020</option>        		          
           </select> 	                  	         
-        </div>
-
+          </div>
+        </p>
+        
         <div class="paypal">
         	<p>If you selected the PayPal option we'll take you to Paypal's site to set up your billing information, when you click “Register” below.</p>
         </div> 
