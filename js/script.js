@@ -16,9 +16,16 @@ $( document ).ready( () => {
         }
     });
 
+    // hide t-shit color options until a theme is selected
+    $( "#colors-js-puns" ).hide();
+    $( "#color option" ).each( ( index, option ) => {
+        $( option ).hide();
+    });
+
     // display correct t-shirt color options
     $( "#design option[value='select theme']").attr('disabled', true);
     $( "#design" ).change( event => {
+        $( "#colors-js-puns" ).slideDown();
         if ( event.target.value !== "Select Theme" ) {
             $( "#color option" ).each( ( index, option ) => {
                 $( option ).attr('selected', false);
@@ -120,7 +127,7 @@ $( document ).ready( () => {
         // input field validator functions
         const nameValidator = name => /^[A-Z][a-z]{1,14}$/.test(name);
         const emailValidator = email => /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
-        const creditCardValidator = creditCardNumber => /^\d{16}$/.test(creditCardNumber);
+        const creditCardValidator = creditCardNumber => /^\d{13,16}$/.test(creditCardNumber);
         const zipCodeValidator = zipCodeNumber => /^\d{5}$/.test(zipCodeNumber);
         const cvvValidator = cvvdNumber => /^\d{3}$/.test(cvvNumber);
 
@@ -167,4 +174,6 @@ $( document ).ready( () => {
             showTooltip( !isChecked, tooltip);
         });
 
+        // stop form from submitting if there are invalid fields 
+        console.log($( "button[type='submit']" ));
 }); 
