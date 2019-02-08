@@ -183,12 +183,24 @@ $( document ).ready( () => {
                 emailValidator(emailInput.value) === false || 
                 isActivityChecked() === false ) {
                 event.preventDefault(); 
+                const tooltip = document.querySelector(".activities-tooltip");
+                showTooltip( !isActivityChecked(), tooltip);
+                $( "input" ).each( (index, option) => {
+                    if ( $( option ).val() === "" ) {
+                        $(option).css('border-color', "red");
+                    }
+                });
             }
             if( $( "#payment option:selected" ).val() === "credit-card" ) {
                 if ( creditCardValidator(creditCardInput.value) === false || 
                     zipCodeValidator(zipCodeInput.value)  === false || 
                     cvvValidator(cvvInput.value) === false ) {
                     event.preventDefault(); 
+                    $( "input" ).each( (index, option) => {
+                        if ( $( option ).val() === "" ) {
+                            $(option).css('border-color', "red");
+                        }
+                    });
                 }
             }
         });
