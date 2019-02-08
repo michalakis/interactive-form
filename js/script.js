@@ -139,6 +139,12 @@ $( document ).ready( () => {
                 const isValid = validator(inputValue);
                 const showTooltipBoolean = inputValue !== "" && !isValid;
                 showTooltip(showTooltipBoolean, tooltip);
+                if ( inputValue !== "" ) {
+                    console.log(event.target);
+                    event.target.style.borderColor = "transparent";
+                } else {
+                    event.target.style.borderColor = "red";
+                }
             }
         };
 
@@ -176,32 +182,42 @@ $( document ).ready( () => {
             showTooltip( !isActivityChecked(), tooltip);
         });
 
-        console.log($( "#payment option:selected" ).val());
-        // stop form from submitting if there are invalid fields 
-        $( "button[type='submit']" ).on("click", event => {
-            if( nameValidator(nameInput.value) === false || 
-                emailValidator(emailInput.value) === false || 
-                isActivityChecked() === false ) {
+    // stop form from submitting if there are invalid fields 
+    $( "button[type='submit']" ).on("click", event => {
+        if( nameValidator(nameInput.value) === false || 
+            emailValidator(emailInput.value) === false || 
+            isActivityChecked() === false ) {
+            event.preventDefault(); 
+            const tooltip = document.querySelector(".activities-tooltip");
+            showTooltip( !isActivityChecked(), tooltip);
+            $( "input" ).each( (index, option) => {
+                if ( $( option ).val() === "" ) {
+                    $(option).css('border-color', "red");
+                }
+            });
+            $( "span.submit-warning" ).slideDown();
+        }
+        if( $( "#payment option:selected" ).val() === "credit-card" ) {
+            if ( creditCardValidator(creditCardInput.value) === false || 
+                zipCodeValidator(zipCodeInput.value)  === false || 
+                cvvValidator(cvvInput.value) === false ) {
                 event.preventDefault(); 
-                const tooltip = document.querySelector(".activities-tooltip");
-                showTooltip( !isActivityChecked(), tooltip);
                 $( "input" ).each( (index, option) => {
                     if ( $( option ).val() === "" ) {
                         $(option).css('border-color', "red");
                     }
                 });
             }
-            if( $( "#payment option:selected" ).val() === "credit-card" ) {
-                if ( creditCardValidator(creditCardInput.value) === false || 
-                    zipCodeValidator(zipCodeInput.value)  === false || 
-                    cvvValidator(cvvInput.value) === false ) {
-                    event.preventDefault(); 
-                    $( "input" ).each( (index, option) => {
-                        if ( $( option ).val() === "" ) {
-                            $(option).css('border-color', "red");
-                        }
-                    });
-                }
-            }
-        });
+            $( ".submit-warning" ).slideDown();
+        }
+    });
+
+    // show error message when input fields are empty
+    $( "input" ).each( (index, option) => {
+        if ( $( option ).val() === "" ) {
+            $(option).css('border-color', "red");
+        }
+    });
+    $( ".empty-fields-warning" ).slideDown();
+
 }); 

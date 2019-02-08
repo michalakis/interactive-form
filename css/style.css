@@ -233,6 +233,14 @@ span.tooltip:after {
 .email-tooltip, .credit-card-tooltip, .zip-code-tooltip, .cvv-tooltip {
 	top: 30px;
 }
+
 .credit-card {
 	position: relative;
+}
+
+.submit-warning, .empty-fields-warning {
+	display: none;
+	background-color: red;
+	color: white;
+	padding: 5px 8px;
 }
