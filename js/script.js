@@ -129,7 +129,7 @@ $( document ).ready( () => {
         const emailValidator = email => /^[^@]+@[^@.]+\.[a-z]+$/i.test(email);
         const creditCardValidator = creditCardNumber => /^\d{13,16}$/.test(creditCardNumber);
         const zipCodeValidator = zipCodeNumber => /^\d{5}$/.test(zipCodeNumber);
-        const cvvValidator = cvvdNumber => /^\d{3}$/.test(cvvNumber);
+        const cvvValidator = cvvdNumber => /^\d{3}$/.test(cvvdNumber);
 
         // function that creates an event listener
         const createListener = validator => {
@@ -139,9 +139,6 @@ $( document ).ready( () => {
                 const isValid = validator(inputValue);
                 const showTooltipBoolean = inputValue !== "" && !isValid;
                 showTooltip(showTooltipBoolean, tooltip);
-                console.log(isValid);
-                console.log(inputValue);
-                console.log(tooltip);
             }
         };
 
@@ -158,8 +155,8 @@ $( document ).ready( () => {
         nameInput.addEventListener("input", createListener(nameValidator));
         emailInput.addEventListener("input", createListener(emailValidator));
         creditCardInput.addEventListener("input", createListener(creditCardValidator));
-        zipCodeInput.addEventListener("input", createListener(creditCardValidator));
-        cvvInput.addEventListener("input", createListener(creditCardValidator));
+        zipCodeInput.addEventListener("input", createListener(zipCodeValidator));
+        cvvInput.addEventListener("input", createListener(cvvValidator));
 
         // function that returns true if a checkbox is selected
         let isChecked = false;
@@ -179,10 +176,20 @@ $( document ).ready( () => {
             showTooltip( !isActivityChecked(), tooltip);
         });
 
+        console.log($( "#payment option:selected" ).val());
         // stop form from submitting if there are invalid fields 
         $( "button[type='submit']" ).on("click", event => {
-            if( nameValidator === false || emailValidator === false || isActivityChecked() === false ) {
+            if( nameValidator(nameInput.value) === false || 
+                emailValidator(emailInput.value) === false || 
+                isActivityChecked() === false ) {
                 event.preventDefault(); 
+            }
+            if( $( "#payment option:selected" ).val() === "credit-card" ) {
+                if ( creditCardValidator(creditCardInput.value) === false || 
+                    zipCodeValidator(zipCodeInput.value)  === false || 
+                    cvvValidator(cvvInput.value) === false ) {
+                    event.preventDefault(); 
+                }
             }
         });
 }); 
